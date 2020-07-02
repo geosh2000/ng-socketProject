@@ -15,15 +15,19 @@ export class ChatService {
     // console.log('service msg called')
 
     const payload = {
-      de: 'Jorge',
+      de: this.wsService.usuario.nombre,
       cuerpo: mensaje
     };
 
-    this.wsService.emit('mensaje', payload);
+    this.wsService.emit( 'mensaje', payload );
   }
 
   getMessages() {
     return this.wsService.listen('mensaje-nuevo');
+  }
+
+  getMessagesPrivate() {
+    return this.wsService.listen( 'mensaje-privado' )
   }
 
 
